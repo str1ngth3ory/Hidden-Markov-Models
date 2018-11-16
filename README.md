@@ -17,7 +17,7 @@ Read [setup.md](./setup.md) for more information on how to effectively manage yo
 Hidden Markov Models are used extensively in Artificial Intelligence, Pattern Recognition, Computer Vision, and many other computer fields.  If a system has unobservable (hidden) states and each state is independent of the prior, then we can create a model of that system using probability distributions over a sequence of observations.  The idea is that we can provide this system with a series of observations to use to query what is the most likely sequence of states that generated these observations.
 
 ### Due Date
-This assignment is due on December 2nd 2018 at 11:59PM UTC-12 (Anywhere on Earth). Note that the final exam will be released on December 3rd, so we suggest finishing this assignment quickly so as not to have too many deadlines pressing at the same time.
+This assignment is due on December 4th 2018 at 11:59PM UTC-12 (Anywhere on Earth). Note that the final exam will be released on December 2nd midnight, so we suggest finishing this assignment quickly so as not to have too many deadlines pressing at the same time.
 
 The deliverables for the assignment are:
 
