@@ -169,10 +169,10 @@ Std | 7.392 | 8.875 | 8.347
 
 ---
 
-### Part 2b: Improveing the Viterbi Trellis
+### Part 2b: Improving the Viterbi Trellis
 _[45 Points]_
 
-Modify the Viterbi Trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to what you are told in Part 1b.
+Modify the Viterbi Trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
 
 
 #### Functions to complete:
