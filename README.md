@@ -74,7 +74,7 @@ Those values can be hardcoded in your program. Don't use round() from python.
 
 Word | Frames | Observed sequence
 --- | --- | --- 
-BUY | 6 | 36, 44, 52, 53, 49, 44 
+BUY | 6 | 36, 44, 52, 56, 49, 44 
 BUY | 8 | 42, 46, 54, 62, 68, 65, 60, 56
 BUY | 10 | 42, 40, 41, 43, 52, 55, 59, 60, 55, 47
 CAR | 10 | 47, 39, 32, 34, 36, 42, 42, 42, 34, 25
