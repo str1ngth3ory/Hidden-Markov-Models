@@ -72,17 +72,17 @@ Round the values to 3 decimal places thoughout entire assignment:
 
 Those values can be hardcoded in your program. Don't use round() from python.
 
-Word | Frames | Observed sequence
---- | --- | --- 
-BUY | 6 | 36, 44, 52, 56, 49, 44 
-BUY | 8 | 42, 46, 54, 62, 68, 65, 60, 56
-BUY | 10 | 42, 40, 41, 43, 52, 55, 59, 60, 55, 47
-CAR | 10 | 47, 39, 32, 34, 36, 42, 42, 42, 34, 25
-CAR | 9 | 35, 35, 43, 46, 52, 52, 56, 49, 45
-CAR | 8 | 28, 35, 46, 46, 48, 43, 43, 40
-HOUSE| 15 | 37, 36, 32, 26, 26, 25, 23, 22, 21, 39, 48, 60, 70, 74, 77
-HOUSE| 15 | 50, 50, 49, 47, 39, 39, 38, 38, 50, 56, 61, 67, 67, 67, 67
-HOUSE| 16 | 45, 43, 44, 43, 40, 35, 36, 37, 39, 45, 60, 68, 66, 72, 72, 75
+Word | Frames | Observed sequence | Initial State1 | Initial State2 | Initial State3
+--- | --- | --- | --- | --- | --- 
+BUY | 6 | 36, 44, 52, 56, 49, 44 | 36, 44 | 52, 56 | 49, 44
+BUY | 8 | 42, 46, 54, 62, 68, 65, 60, 56 | 42, 46, 54 | 62, 68, 65 | 60, 56
+BUY | 10 | 42, 40, 41, 43, 52, 55, 59, 60, 55, 47 | 42, 40, 41|43, 52, 55|59, 60, 55, 47
+CAR | 10 | 47, 39, 32, 34, 36, 42, 42, 42, 34, 25|47, 39, 32|34, 36, 42|42, 42, 34, 25
+CAR | 9 | 35, 35, 43, 46, 52, 52, 56, 49, 45|35, 35, 43|46, 52, 52|56, 49, 45
+CAR | 8 | 28, 35, 46, 46, 48, 43, 43, 40|28, 35, 46|46, 48, 43|43, 40
+HOUSE| 15 | 37, 36, 32, 26, 26, 25, 23, 22, 21, 39, 48, 60, 70, 74, 77|37, 36, 32, 26, 26|25, 23, 22, 21, 39|48, 60, 70, 74, 77
+HOUSE| 15 | 50, 50, 49, 47, 39, 39, 38, 38, 50, 56, 61, 67, 67, 67, 67|50, 50, 49, 47, 39|39, 38, 38, 50, 56|61, 67, 67, 67, 67
+HOUSE| 16 | 45, 43, 44, 43, 40, 35, 36, 37, 39, 45, 60, 68, 66, 72, 72, 75|45, 43, 44, 43, 40|35, 36, 37, 39, 45|60, 68, 66, 72, 72, 75
 
 As shown in the diagram below, each one of the three words (BUY, CAR, and HOUSE) has exactly **THREE hidden states** in its HMM. All words must start from State 1 and can only transit to the next state or stay in the current one.
 
