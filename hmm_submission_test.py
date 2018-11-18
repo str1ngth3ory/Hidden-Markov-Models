@@ -1,7 +1,17 @@
 import unittest
+import platform
 
 from hmm_submission import part_1_a, part_2_a
 from hmm_submission import viterbi, multidimensional_viterbi
+
+
+if platform.system() == 'Darwin':
+    NIX = True
+    print "Test on Linux/OS X system"
+elif platform.system() == 'Windows':
+    NIX = False
+    print "Test on Windows system"
+
 
 class TestPart1a(unittest.TestCase):
 
@@ -21,63 +31,120 @@ class TestPart1a(unittest.TestCase):
 
 
     def test_b_emision(self):
-        mean, std = self.b_emission_paras['B1']
-        msg = 'incorrect mean for letter BUY, state B1'
-        self.assertEqual(8143732372720334548, hash(str(mean)), msg)
-        msg = 'incorrect std for letter BUY, state B1'
-        self.assertEqual(4909260699532052808, hash(str(std)), msg)
+        if NIX:
+            mean, std = self.b_emission_paras['B1']
+            msg = 'incorrect mean for letter BUY, state B1'
+            self.assertEqual(8143732372720334548, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B1'
+            self.assertEqual(4909260699532052808, hash(str(std)), msg)
 
-        mean, std = self.b_emission_paras['B2']
-        msg = 'incorrect mean for letter BUY, state B2'
-        self.assertEqual(8053884863761162022, hash(str(mean)), msg)
-        msg = 'incorrect std for letter BUY, state B2'
-        self.assertEqual(-8409099901164351883, hash(str(std)), msg)
+            mean, std = self.b_emission_paras['B2']
+            msg = 'incorrect mean for letter BUY, state B2'
+            self.assertEqual(8053884863761162022, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B2'
+            self.assertEqual(-8409099901164351883, hash(str(std)), msg)
 
-        mean, std = self.b_emission_paras['B3']
-        msg = 'incorrect mean for letter BUY, state B3'
-        self.assertEqual(-5500469697994766098, hash(str(mean)), msg)
-        msg = 'incorrect std for letter BUY, state B3'
-        self.assertEqual(-8409097901178351951, hash(str(std)), msg)
+            mean, std = self.b_emission_paras['B3']
+            msg = 'incorrect mean for letter BUY, state B3'
+            self.assertEqual(-5500469697994766098, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B3'
+            self.assertEqual(-8409097901178351951, hash(str(std)), msg)
+        else:
+            mean, std = self.b_emission_paras['B1']
+            msg = 'incorrect mean for letter BUY, state B1'
+            self.assertEqual(366491348, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B1'
+            self.assertEqual(-1989883576, hash(str(std)), msg)
+
+            mean, std = self.b_emission_paras['B2']
+            msg = 'incorrect mean for letter BUY, state B2'
+            self.assertEqual(-1100931290, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B2'
+            self.assertEqual(1985187445, hash(str(std)), msg)
+
+            mean, std = self.b_emission_paras['B3']
+            msg = 'incorrect mean for letter BUY, state B3'
+            self.assertEqual(-784807698, hash(str(mean)), msg)
+            msg = 'incorrect std for letter BUY, state B3'
+            self.assertEqual(516427441, hash(str(std)), msg)
 
 
     def test_c_emision(self):
-        mean, std = self.c_emission_paras['C1']
-        msg = 'incorrect mean for letter CAR, state C1'
-        self.assertEqual(1761083565526287931, hash(str(mean)), msg)
-        msg = 'incorrect std for letter CAR, state C1'
-        self.assertEqual(-5302976700826216731, hash(str(std)), msg)
+        if NIX:
+            mean, std = self.c_emission_paras['C1']
+            msg = 'incorrect mean for letter CAR, state C1'
+            self.assertEqual(1761083565526287931, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C1'
+            self.assertEqual(-5302976700826216731, hash(str(std)), msg)
 
-        mean, std = self.c_emission_paras['C2']
-        msg = 'incorrect mean for letter CAR, state C2'
-        self.assertEqual(-3528458061032876368, hash(str(mean)), msg)
-        msg = 'incorrect std for letter CAR, state C2'
-        self.assertEqual(163512108432620419, hash(str(std)), msg)
+            mean, std = self.c_emission_paras['C2']
+            msg = 'incorrect mean for letter CAR, state C2'
+            self.assertEqual(-3528458061032876368, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C2'
+            self.assertEqual(163512108432620419, hash(str(std)), msg)
 
-        mean, std = self.c_emission_paras['C3']
-        msg = 'incorrect mean for letter CAR, state C3'
-        self.assertEqual(-5323582098098394060, hash(str(mean)), msg)
-        msg = 'incorrect std for letter CAR, state C3'
-        self.assertEqual(4718540918289031730, hash(str(std)), msg)
+            mean, std = self.c_emission_paras['C3']
+            msg = 'incorrect mean for letter CAR, state C3'
+            self.assertEqual(-5323582098098394060, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C3'
+            self.assertEqual(4718540918289031730, hash(str(std)), msg)
+        else:
+            mean, std = self.c_emission_paras['C1']
+            msg = 'incorrect mean for letter CAR, state C1'
+            self.assertEqual(385418811, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C1'
+            self.assertEqual(1997838053, hash(str(std)), msg)
+
+            mean, std = self.c_emission_paras['C2']
+            msg = 'incorrect mean for letter CAR, state C2'
+            self.assertEqual(-1958373712, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C2'
+            self.assertEqual(1939471235, hash(str(std)), msg)
+
+            mean, std = self.c_emission_paras['C3']
+            msg = 'incorrect mean for letter CAR, state C3'
+            self.assertEqual(-1908970444, hash(str(mean)), msg)
+            msg = 'incorrect std for letter CAR, state C3'
+            self.assertEqual(482566706, hash(str(std)), msg)
 
 
     def test_h_emision(self):
-        mean, std = self.h_emission_paras['H1']
-        msg = 'incorrect mean for letter HOUSE, state H1'
-        self.assertEqual(22004294861154160, hash(str(mean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H1'
-        self.assertEqual(1803143499295917918, hash(str(std)), msg)
+        if NIX:
+            mean, std = self.h_emission_paras['H1']
+            msg = 'incorrect mean for letter HOUSE, state H1'
+            self.assertEqual(22004294861154160, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1'
+            self.assertEqual(1803143499295917918, hash(str(std)), msg)
 
-        mean, std = self.h_emission_paras['H2']
-        msg = 'incorrect mean for letter HOUSE, state H2'
-        self.assertEqual(-6681881302971367059, hash(str(mean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H2'
-        self.assertEqual(-2387580281827102941, hash(str(std)), msg)
+            mean, std = self.h_emission_paras['H2']
+            msg = 'incorrect mean for letter HOUSE, state H2'
+            self.assertEqual(-6681881302971367059, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2'
+            self.assertEqual(-2387580281827102941, hash(str(std)), msg)
 
-        mean, std = self.h_emission_paras['H3']
-        msg = 'incorrect mean for letter HOUSE, state H3'
-        self.assertEqual(-168079895755008500, hash(str(mean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H3'
-        self.assertEqual(-8409100901160351893, hash(str(std)), msg)
+            mean, std = self.h_emission_paras['H3']
+            msg = 'incorrect mean for letter HOUSE, state H3'
+            self.assertEqual(-168079895755008500, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3'
+            self.assertEqual(-8409100901160351893, hash(str(std)), msg)
+        else:
+            mean, std = self.h_emission_paras['H1']
+            msg = 'incorrect mean for letter HOUSE, state H1'
+            self.assertEqual(582707056, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1'
+            self.assertEqual(-1969846434, hash(str(std)), msg)
+
+            mean, std = self.h_emission_paras['H2']
+            msg = 'incorrect mean for letter HOUSE, state H2'
+            self.assertEqual(1762738541, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2'
+            self.assertEqual(888663843, hash(str(std)), msg)
+
+            mean, std = self.h_emission_paras['H3']
+            msg = 'incorrect mean for letter HOUSE, state H3'
+            self.assertEqual(-1348250100, hash(str(mean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3'
+            self.assertEqual(-1578399893, hash(str(std)), msg)
 
 
     def test_b_transition(self):
@@ -239,132 +306,258 @@ class TestPart2a(unittest.TestCase):
 
 
     def test_b_emision(self):
-        right, left = self.b_emission_paras['B1']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter BUY, state B1, right hand'
-        self.assertEqual(8143732372720334548, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter BUY, state B1, right hand'
-        self.assertEqual(4909260699532052808, hash(str(rstd)), msg)
+        if NIX:
+            right, left = self.b_emission_paras['B1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B1, right hand'
+            self.assertEqual(8143732372720334548, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B1, right hand'
+            self.assertEqual(4909260699532052808, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter BUY, state B1, left hand'
-        self.assertEqual(4461908972760738592, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter BUY, state B1, left hand'
-        self.assertEqual(1458919922068683000, hash(str(lstd)), msg)
-
-
-        right, left = self.b_emission_paras['B2']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter BUY, state B2, right hand'
-        self.assertEqual(8053877863755162099, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter BUY, state B2, right hand'
-        self.assertEqual(-5302976700817216765, hash(str(rstd)), msg)
-
-        lmean, lstd = left
-        msg = 'incorrect mean for letter BUY, state B2, left hand'
-        self.assertEqual(4272007845397481125, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter BUY, state B2, left hand'
-        self.assertEqual(-6431361174054364148, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B1, left hand'
+            self.assertEqual(4461908972760738592, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B1, left hand'
+            self.assertEqual(1458919922068683000, hash(str(lstd)), msg)
 
 
-        right, left = self.b_emission_paras['B3']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter BUY, state B3, right hand'
-        self.assertEqual(-5323585098128394121, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter BUY, state B3, right hand'
-        self.assertEqual(-5302988700954216970, hash(str(rstd)), msg)
+            right, left = self.b_emission_paras['B2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B2, right hand'
+            self.assertEqual(8053884863761162022, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B2, right hand'
+            self.assertEqual(-8409099901164351883, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter BUY, state B3, left hand'
-        self.assertEqual(-8843841129772418303, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter BUY, state B3, left hand'
-        self.assertEqual(-8409098901180351943, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B2, left hand'
+            self.assertEqual(4272007845397481125, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B2, left hand'
+            self.assertEqual(-6431361174054364148, hash(str(lstd)), msg)
+
+
+            right, left = self.b_emission_paras['B3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B3, right hand'
+            self.assertEqual(-5500469697994766098, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B3, right hand'
+            self.assertEqual(-8409097901178351951, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B3, left hand'
+            self.assertEqual(-8843841129772418303, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B3, left hand'
+            self.assertEqual(-8409098901180351943, hash(str(lstd)), msg)
+        else:
+            right, left = self.b_emission_paras['B1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B1, right hand'
+            self.assertEqual(366491348, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B1, right hand'
+            self.assertEqual(-1989883576, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B1, left hand'
+            self.assertEqual(227027744, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B1, left hand'
+            self.assertEqual(2124740856, hash(str(lstd)), msg)
+
+
+            right, left = self.b_emission_paras['B2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B2, right hand'
+            self.assertEqual(-1100931290, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B2, right hand'
+            self.assertEqual(1985187445, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B2, left hand'
+            self.assertEqual(1452885669, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B2, left hand'
+            self.assertEqual(1178606604, hash(str(lstd)), msg)
+
+
+            right, left = self.b_emission_paras['B3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter BUY, state B3, right hand'
+            self.assertEqual(-784807698, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter BUY, state B3, right hand'
+            self.assertEqual(516427441, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter BUY, state B3, left hand'
+            self.assertEqual(1642920705, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter BUY, state B3, left hand'
+            self.assertEqual(1241807417, hash(str(lstd)), msg)
 
 
     def test_c_emision(self):
-        right, left = self.c_emission_paras['C1']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter CAR, state C1, right hand'
-        self.assertEqual(1761083565526287931, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter CAR, state C1, right hand'
-        self.assertEqual(-5302976700826216731, hash(str(rstd)), msg)
+        if NIX:
+            right, left = self.c_emission_paras['C1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C1, right hand'
+            self.assertEqual(1761083565526287931, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C1, right hand'
+            self.assertEqual(-5302976700826216731, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter CAR, state C1, left hand'
-        self.assertEqual(-1169019967607120632, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter CAR, state C1, left hand'
-        self.assertEqual(-4544859283256213909, hash(str(lstd)), msg)
-
-
-        right, left = self.c_emission_paras['C2']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter CAR, state C2, right hand'
-        self.assertEqual(-5323575098000393896, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter CAR, state C2, right hand'
-        self.assertEqual(-6431361174046364063, hash(str(rstd)), msg)
-
-        lmean, lstd = left
-        msg = 'incorrect mean for letter CAR, state C2, left hand'
-        self.assertEqual(-7196902500767082077, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter CAR, state C2, left hand'
-        self.assertEqual(-5302985700937216978, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C1, left hand'
+            self.assertEqual(-1169019967607120632, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C1, left hand'
+            self.assertEqual(-4544859283256213909, hash(str(lstd)), msg)
 
 
-        right, left = self.c_emission_paras['C3']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter CAR, state C3, right hand'
-        self.assertEqual(8465069163979809992, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter CAR, state C3, right hand'
-        self.assertEqual(-2387580281828102926, hash(str(rstd)), msg)
+            right, left = self.c_emission_paras['C2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C2, right hand'
+            self.assertEqual(-3528458061032876368, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C2, right hand'
+            self.assertEqual(163512108432620419, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter CAR, state C3, left hand'
-        self.assertEqual(-1169013967511120355, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter CAR, state C3, left hand'
-        self.assertEqual(4718547918429032024, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C2, left hand'
+            self.assertEqual(-7196902500767082077, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C2, left hand'
+            self.assertEqual(-5302985700937216978, hash(str(lstd)), msg)
+
+
+            right, left = self.c_emission_paras['C3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C3, right hand'
+            self.assertEqual(-5323582098098394060, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C3, right hand'
+            self.assertEqual(4718540918289031730, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C3, left hand'
+            self.assertEqual(-1169013967511120355, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C3, left hand'
+            self.assertEqual(4718547918429032024, hash(str(lstd)), msg)
+        else:
+            right, left = self.c_emission_paras['C1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C1, right hand'
+            self.assertEqual(385418811, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C1, right hand'
+            self.assertEqual(1997838053, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C1, left hand'
+            self.assertEqual(2138070280, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C1, left hand'
+            self.assertEqual(-1017086357, hash(str(lstd)), msg)
+
+
+            right, left = self.c_emission_paras['C2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C2, right hand'
+            self.assertEqual(-1958373712, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C2, right hand'
+            self.assertEqual(1939471235, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C2, left hand'
+            self.assertEqual(1856526755, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C2, left hand'
+            self.assertEqual(-156677074, hash(str(lstd)), msg)
+
+
+            right, left = self.c_emission_paras['C3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter CAR, state C3, right hand'
+            self.assertEqual(-1908970444, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter CAR, state C3, right hand'
+            self.assertEqual(482566706, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter CAR, state C3, left hand'
+            self.assertEqual(-2130209251, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter CAR, state C3, left hand'
+            self.assertEqual(-174125480, hash(str(lstd)), msg)
 
 
     def test_h_emision(self):
-        right, left = self.h_emission_paras['H1']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter HOUSE, state H1, right hand'
-        self.assertEqual(22004294861154160, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H1, right hand'
-        self.assertEqual(1803143499295917918, hash(str(rstd)), msg)
+        if NIX:
+            right, left = self.h_emission_paras['H1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H1, right hand'
+            self.assertEqual(22004294861154160, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1, right hand'
+            self.assertEqual(1803143499295917918, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter HOUSE, state H1, left hand'
-        self.assertEqual(-1169016967513120372, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H1, left hand'
-        self.assertEqual(4718540918302031706, hash(str(lstd)), msg)
-
-
-        right, left = self.h_emission_paras['H2']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter HOUSE, state H2, right hand'
-        self.assertEqual(-6681881302971367059, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H2, right hand'
-        self.assertEqual(-2387580281827102941, hash(str(rstd)), msg)
-
-        lmean, lstd = left
-        msg = 'incorrect mean for letter HOUSE, state H2, left hand'
-        self.assertEqual(-678093097655470307, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H2, left hand'
-        self.assertEqual(-2387573281824102997, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H1, left hand'
+            self.assertEqual(-1169016967513120372, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1, left hand'
+            self.assertEqual(4718540918302031706, hash(str(lstd)), msg)
 
 
-        right, left = self.h_emission_paras['H3']
-        rmean, rstd = right
-        msg = 'incorrect mean for letter HOUSE, state H3, right hand'
-        self.assertEqual(-168079895755008500, hash(str(rmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H3, right hand'
-        self.assertEqual(-8409100901160351893, hash(str(rstd)), msg)
+            right, left = self.h_emission_paras['H2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H2, right hand'
+            self.assertEqual(-6681881302971367059, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2, right hand'
+            self.assertEqual(-2387580281827102941, hash(str(rstd)), msg)
 
-        lmean, lstd = left
-        msg = 'incorrect mean for letter HOUSE, state H3, left hand'
-        self.assertEqual(-8143741737273793857, hash(str(lmean)), msg)
-        msg = 'incorrect std for letter HOUSE, state H3, left hand'
-        self.assertEqual(-2387582281837102921, hash(str(lstd)), msg)
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H2, left hand'
+            self.assertEqual(-678093097655470307, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2, left hand'
+            self.assertEqual(-2387573281824102997, hash(str(lstd)), msg)
+
+
+            right, left = self.h_emission_paras['H3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H3, right hand'
+            self.assertEqual(-168079895755008500, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3, right hand'
+            self.assertEqual(-8409100901160351893, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H3, left hand'
+            self.assertEqual(-8143741737273793857, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3, left hand'
+            self.assertEqual(-2387582281837102921, hash(str(lstd)), msg)
+        else:
+            right, left = self.h_emission_paras['H1']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H1, right hand'
+            self.assertEqual(582707056, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1, right hand'
+            self.assertEqual(-1969846434, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H1, left hand'
+            self.assertEqual(49930636, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H1, left hand'
+            self.assertEqual(495566682, hash(str(lstd)), msg)
+
+
+            right, left = self.h_emission_paras['H2']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H2, right hand'
+            self.assertEqual(1762738541, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2, right hand'
+            self.assertEqual(888663843, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H2, left hand'
+            self.assertEqual(-1650854115, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H2, left hand'
+            self.assertEqual(94971307, hash(str(lstd)), msg)
+
+
+            right, left = self.h_emission_paras['H3']
+            rmean, rstd = right
+            msg = 'incorrect mean for letter HOUSE, state H3, right hand'
+            self.assertEqual(-1348250100, hash(str(rmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3, right hand'
+            self.assertEqual(-1578399893, hash(str(rstd)), msg)
+
+            lmean, lstd = left
+            msg = 'incorrect mean for letter HOUSE, state H3, left hand'
+            self.assertEqual(-1891245377, hash(str(lmean)), msg)
+            msg = 'incorrect std for letter HOUSE, state H3, left hand'
+            self.assertEqual(-1961543497, hash(str(lstd)), msg)
 
 
     def test_b_transition(self):
@@ -373,10 +566,10 @@ class TestPart2a(unittest.TestCase):
 
             msg = ('right hand BUY transition prob in state {} '
                    'should sum to 1 (get {})').format(state, sum(right))
-            self.assertAlmostEqual(1.0, sum(right), places=3, msg=msg)
+            self.assertAlmostEqual(1.0, sum(right), places=2, msg=msg)
             msg = ('left hand BUY transition prob in state {} '
                    'should sum to 1 (get {})').format(state, sum(left))
-            self.assertAlmostEqual(1.0, sum(left), places=3, msg=msg)
+            self.assertAlmostEqual(1.0, sum(left), places=2, msg=msg)
 
 
     def test_c_transition(self):
@@ -388,7 +581,7 @@ class TestPart2a(unittest.TestCase):
             self.assertAlmostEqual(1.0, sum(right), places=2, msg=msg)
             msg = ('left hand CAR transition prob in state {} '
                    'should sum to 1 (get {})').format(state, sum(left))
-            self.assertAlmostEqual(1.0, sum(left), places=3, msg=msg)
+            self.assertAlmostEqual(1.0, sum(left), places=2, msg=msg)
 
 
     def test_h_transition(self):
@@ -397,7 +590,7 @@ class TestPart2a(unittest.TestCase):
 
             msg = ('right hand HOUSE transition prob in state {} '
                    'should sum to 1 (get {})').format(state, sum(right))
-            self.assertAlmostEqual(1.0, sum(right), places=3, msg=msg)
+            self.assertAlmostEqual(1.0, sum(right), places=2, msg=msg)
             msg = ('left hand HOUSE transition prob in state {} '
                    'should sum to 1 (get {})').format(state, sum(left))
             self.assertAlmostEqual(1.0, sum(left), places=2, msg=msg)
@@ -478,14 +671,14 @@ class TestPart2b(unittest.TestCase):
         left_y = [101, 95, 84, 77, 73, 68, 66]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 1.11584340542e-30
+        prob_ans = 5.338221136506606e-28
         seq_ans = ['B1', 'B1', 'B2', 'B2', 'B3', 'B3', 'B3']
         seq, prob = multidimensional_viterbi(evidence,
                                             self.states,
                                             self.prior,
                                             self.trans,
                                             self.emiss)
-        self.assertAlmostEqual(prob_ans, prob, places=34)
+        self.assertAlmostEqual(prob_ans, prob, places=32)
         self.assertEqual(seq_ans, seq)
 
 
@@ -540,7 +733,7 @@ class TestPart2b(unittest.TestCase):
                     57, 67, 74, 85, 84, 89, 93, 93, 94]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 1.60813252848e-76
+        prob_ans = 5.2184467914787781e-77
         seq_ans = ['B1', 'B2', 'B3', 'B3', 'B3', 'B3', 'B3',
                     'B3', 'H1', 'H1','H1', 'H1', 'H2', 'H3',
                     'H3', 'H3', 'H3', 'H3', 'H3', 'H3', 'H3']
@@ -549,7 +742,7 @@ class TestPart2b(unittest.TestCase):
                                             self.prior,
                                             self.trans,
                                             self.emiss)
-        self.assertAlmostEqual(prob_ans, prob, places=80)
+        self.assertAlmostEqual(prob_ans, prob, places=77)
         self.assertEqual(seq_ans, seq)
 
 
@@ -564,7 +757,7 @@ class TestPart2b(unittest.TestCase):
                     56, 48, 43, 43, 44, 46, 52, 65]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 2.73935869674e-72
+        prob_ans = 1.773625988606551e-71
         seq_ans = ['B1', 'B1', 'B1', 'B1', 'B1', 'B1', 'B2',
                     'B3','B3', 'B3', 'C1', 'C1', 'C1', 'C1',
                     'C1', 'C1', 'C1', 'C1', 'C1']
@@ -573,7 +766,7 @@ class TestPart2b(unittest.TestCase):
                                             self.prior,
                                             self.trans,
                                             self.emiss)
-        self.assertAlmostEqual(prob_ans, prob, places=76)
+        self.assertAlmostEqual(prob_ans, prob, places=71)
         self.assertEqual(seq_ans, seq)
 
 
