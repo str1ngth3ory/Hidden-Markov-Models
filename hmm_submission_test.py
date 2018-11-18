@@ -1,8 +1,8 @@
 import unittest
 
-from hmm_submission import part_1_a, part_2_a
-from hmm_submission import viterbi, multidimensional_viterbi
-
+# from hmm_submission import part_1_a, part_2_a
+# from hmm_submission import viterbi, multidimensional_viterbi
+from hmm_submission_solution import *
 
 class TestPart1a(unittest.TestCase):
 
@@ -30,15 +30,15 @@ class TestPart1a(unittest.TestCase):
 
         mean, std = self.b_emission_paras['B2']
         msg = 'incorrect mean for letter BUY, state B2'
-        self.assertEqual(8053877863755162099, hash(str(mean)), msg)
+        self.assertEqual(8053884863761162022, hash(str(mean)), msg)
         msg = 'incorrect std for letter BUY, state B2'
-        self.assertEqual(-5302976700817216765, hash(str(std)), msg)
+        self.assertEqual(-8409099901164351883, hash(str(std)), msg)
 
         mean, std = self.b_emission_paras['B3']
         msg = 'incorrect mean for letter BUY, state B3'
-        self.assertEqual(-5323585098128394121, hash(str(mean)), msg)
+        self.assertEqual(-5500469697994766098, hash(str(mean)), msg)
         msg = 'incorrect std for letter BUY, state B3'
-        self.assertEqual(-5302988700954216970, hash(str(std)), msg)
+        self.assertEqual(-8409097901178351951, hash(str(std)), msg)
 
 
     def test_c_emision(self):
@@ -50,15 +50,15 @@ class TestPart1a(unittest.TestCase):
 
         mean, std = self.c_emission_paras['C2']
         msg = 'incorrect mean for letter CAR, state C2'
-        self.assertEqual(-5323575098000393896, hash(str(mean)), msg)
+        self.assertEqual(-3528458061032876368, hash(str(mean)), msg)
         msg = 'incorrect std for letter CAR, state C2'
-        self.assertEqual(-6431361174046364063, hash(str(std)), msg)
+        self.assertEqual(163512108432620419, hash(str(std)), msg)
 
         mean, std = self.c_emission_paras['C3']
         msg = 'incorrect mean for letter CAR, state C3'
-        self.assertEqual(8465069163979809992, hash(str(mean)), msg)
+        self.assertEqual(-5323582098098394060, hash(str(mean)), msg)
         msg = 'incorrect std for letter CAR, state C3'
-        self.assertEqual(-2387580281828102926, hash(str(std)), msg)
+        self.assertEqual(4718540918289031730, hash(str(std)), msg)
 
 
     def test_h_emision(self):
@@ -177,7 +177,7 @@ class TestPart1b(unittest.TestCase):
         Actual words: BUY
         """
         evidence = [44, 51, 57, 63, 61, 60, 59]
-        prob_ans = 1.45033406651e-10
+        prob_ans = 3.81226460569e-11
         seq_ans = ['B1', 'B2', 'B2', 'B2', 'B2', 'B2', 'B2']
         seq, prob = viterbi(evidence,
                             self.states,
