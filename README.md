@@ -101,11 +101,11 @@ The next training sample has the following observed sequence:
 
 `45 45 34 | 30 30 25 36 52 | 62 69 74` 
 
-and you are trying to adjust the location of state boundary between State 1 & 2. You first move it 1 step to the left since 34 is closer to State 2, and then you realize that 45 is still closer to State 2. If you follow the same routine, you will end up with no obvervation for State 1. In order to prevent this from happening, you have to stop at 45 and as a result leave the boundary as 
+and you are trying to adjust the location of state boundary between State 1 & 2. You first move it 1 step to the left since 34 is closer to State 2, and then you realize that 45 is still closer to State 2. If you follow the same routine, you will end up with no obvervation for State 1. In order to prevent this from happening, you have to stop at the last "45" and as a result leave the boundary as 
 
-`45 45 | 34 30 30 25 36 52 | 62 69 74`
+`45 | 45 34 30 30 25 36 52 | 62 69 74`
 
-Now you meet the '3 hidden states per sample' requirement.
+Now you meet the '3 hidden states per sample' requirement. Please check Piazza post @2368 for detailed instruction.
 
 
 #### Functions to complete:
