@@ -5,12 +5,12 @@ from hmm_submission import part_1_a, part_2_a
 from hmm_submission import viterbi, multidimensional_viterbi
 
 
-if platform.system() == 'Darwin':
-    NIX = True
-    print "Test on Linux/OS X system"
-elif platform.system() == 'Windows':
+if platform.system() == 'Windows':
     NIX = False
     print "Test on Windows system"
+else:
+    NIX = True
+    print "Test on Linux/OS X system"
 
 
 class TestPart1a(unittest.TestCase):
