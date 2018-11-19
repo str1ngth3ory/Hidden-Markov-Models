@@ -54,7 +54,7 @@ In each video, there's an ASL signer signing a meaningful sentence in ASL. You a
 In this assignment, for the sake of simplicity, you will only use the Y-coordinates to construct your HMM. In Part 1 you will build a one dimensional model, recognizing words based only on a series of right-hand Y coordinates; In Part 2 you will go multidimensional, and at each time step (frame) you will have two observed coordinates, representing right hand & left hand Y positions at that frame.
 
 ### Part 1a: Encoding the HMM
-_[10 Points]_
+_[15 Points]_
 
 Follow the method taught on Udacity **Lecture 8: 29. HMM Training** to determine following values for each word:
 1. the transition probabilities of each state
@@ -170,7 +170,7 @@ Std | 7.392 | 8.875 | 8.347
 ---
 
 ### Part 2b: Improving the Viterbi Trellis
-_[45 Points]_
+_[40 Points]_
 
 Modify the Viterbi Trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
 
