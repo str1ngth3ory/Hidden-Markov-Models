@@ -139,7 +139,7 @@ In the autograder, we will also test your code against other `evidence_vectors`.
 ----
 
 ### Part2a: Multidimensional Output Probabilities
-_[5 Points]_
+_[6 Points]_
 
 In Part 1a, we use only right-hand Y-axis coordinates as our solely feature, now we are going to use both hands. Since sign language is two handed, using features both to the right and left hands can increase the accuracy of our model when dealing with more complex sentences.
 
