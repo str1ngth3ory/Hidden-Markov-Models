@@ -1,9 +1,9 @@
 import unittest
 import platform
 
-from hmm_submission import part_1_a, part_2_a
-from hmm_submission import viterbi, multidimensional_viterbi
-
+# from hmm_submission import part_1_a, part_2_a
+# from hmm_submission import viterbi, multidimensional_viterbi
+from hmm_submission_solution import *
 
 if platform.system() == 'Windows':
     NIX = False
@@ -671,7 +671,7 @@ class TestPart2b(unittest.TestCase):
         left_y = [101, 95, 84, 77, 73, 68, 66]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 5.338221136506606e-28
+        prob_ans = 4.1704852628957851e-27
         seq_ans = ['B1', 'B1', 'B2', 'B2', 'B3', 'B3', 'B3']
         seq, prob = multidimensional_viterbi(evidence,
                                             self.states,
@@ -733,7 +733,7 @@ class TestPart2b(unittest.TestCase):
                     57, 67, 74, 85, 84, 89, 93, 93, 94]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 5.2184467914787781e-77
+        prob_ans = 3.8056704978411683e-75
         seq_ans = ['B1', 'B2', 'B3', 'B3', 'B3', 'B3', 'B3',
                     'B3', 'H1', 'H1','H1', 'H1', 'H2', 'H3',
                     'H3', 'H3', 'H3', 'H3', 'H3', 'H3', 'H3']
@@ -757,7 +757,7 @@ class TestPart2b(unittest.TestCase):
                     56, 48, 43, 43, 44, 46, 52, 65]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 1.773625988606551e-71
+        prob_ans = 8.3138718215932126e-71
         seq_ans = ['B1', 'B1', 'B1', 'B1', 'B1', 'B1', 'B2',
                     'B3','B3', 'B3', 'C1', 'C1', 'C1', 'C1',
                     'C1', 'C1', 'C1', 'C1', 'C1']
