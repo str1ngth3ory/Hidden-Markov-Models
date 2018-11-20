@@ -1,9 +1,9 @@
 import unittest
 import platform
 
-# from hmm_submission import part_1_a, part_2_a
-# from hmm_submission import viterbi, multidimensional_viterbi
-from hmm_submission_solution import *
+from hmm_submission import part_1_a, part_2_a
+from hmm_submission import viterbi, multidimensional_viterbi
+
 
 if platform.system() == 'Windows':
     NIX = False
