@@ -1,66 +1,81 @@
-# Assignment 6 (on campus): Hidden Markov Models
+# Assignment 6: Hidden Markov Models
 
 ## Setup
-Clone this repository:
+1. Clone this repository:
 
-`git clone https://github.gatech.edu/omscs6601/assignment_6_oncampus.git`
+    `git clone https://github.gatech.edu/omscs6601/assignment_6.git`
+    
 
-The submission scripts depend on the presence of 3 python packages - `requests`, `future`, and `nelson`. Install them using the command below:
+2. Navigate to the assignment_6/ directory
 
-`pip install -r requirements.txt`
 
-Python 2.7 is recommended and has been tested.
+3. Activate your AI environment if you're using Anaconda
 
-Read [setup.md](./setup.md) for more information on how to effectively manage your git repository and troubleshooting information.
+
+4. Run the following command to install all requirements for this assignment:
+
+    `pip install -r requirements.txt`
+
+
 
 ## Overview
-Hidden Markov Models are used extensively in Artificial Intelligence, Pattern Recognition, Computer Vision, and many other computer fields.  If a system has unobservable (hidden) states and each state is independent of the prior, then we can create a model of that system using probability distributions over a sequence of observations.  The idea is that we can provide this system with a series of observations to use to query what is the most likely sequence of states that generated these observations.
+Hidden Markov Models are used extensively in Artificial Intelligence, Pattern Recognition, Computer Vision, and many other fields.  If a system has unobservable (hidden) states and each state is independent of the prior, then we can create a model of that system using probability distributions over a sequence of observations.  The idea is that we can provide this system with a series of observations to use to query what is the most likely sequence of states that generated these observations.
 
 ### Due Date
-This assignment is due on December 4th 2018 at 11:59PM UTC-12 (Anywhere on Earth). Note that the final exam will be released on December 2nd midnight, so we suggest finishing this assignment quickly so as not to have too many deadlines pressing at the same time.
+This assignment is due on December 2nd, 2019 at 11:59PM UTC-12 (Anywhere on Earth). We suggest finishing this assignment quickly to have some breathing room before the final exam!
 
 The deliverables for the assignment are:
 
-* All functions completed in **_hmm_submission.py_**
+* All functions completed in **submission.py**
 
 ### The Files
 
-You will only have to edit and submit **_hmm_submission.py_**, but here are all the notable files:
-1. **_hmm_submission.py_**: Where you will construct your probabilities and viterbi trellis.
-2. **_hmm_submission_tests.py_**:  Local test file.  Due to static nature of the trellis values, local tests are extremely limited.  Please do not share values or probabilities with other students if you create your own tests.
+You will only have to edit and submit **submission.py**, but here are all the notable files:
+1. **submission.py**: Where you will construct your probabilities and viterbi trellis.
+2. **hmm_submission_tests.py**:  Local test file.  Due to static nature of the trellis values, local tests are extremely limited.  Please do not share values or probabilities with other students if you create your own tests.
 
 ## Submission
-All submissions will be via Bonnie. Execute `python submit.py` to send your submission file.  It is recommended to run this command from a shell/command prompt as issues have been known while running inside select IDEs.
+All submissions will be via Gradescope. Execute `python submit.py` to send your submission file.  It is recommended to run this command from a shell/command prompt as issues have been known while running inside select IDEs.
 
-#### A total of 10 submissions is allowed. We will take the LAST submission as your final submission.
+#### IMPORTANT: A total of 10 submissions is allowed for this assignment. This means you can submit a maximum of 5 times during the duration of the assignment. Please use your submissions carefully and do not submit until you have thoroughly tested your code locally.
 
-Please also submit your hmm_submission.py to Canvas as backup.
+#### If you're at 9 submissions, use your tenth and last submission wisely. The submission marked as ‘Active’ in Gradescope will be the submission counted towards your grade. 
 
-### Imports
-- All Standard Python 2 modules
-- Numpy
+Please also submit your submission.py to Canvas as backup.
+
 
 ### Resources
 1. Udacity Lectures on [Pattern Recognition Through Time (Lesson 8)](https://classroom.udacity.com/courses/ud954/lessons/5829639927/concepts/66950604320923)
-2. Challenge Questions 22-24 on Piazza
+2. Challenge Questions on Piazza
 
 ## The Assignment
 The goal of this assignment is to demonstrate the power of probabalistic models. You will build a word recognizer for American Sign Language (ASL) video sequences. In particular, this project employs [hidden Markov models (HMM's)](https://en.wikipedia.org/wiki/Hidden_Markov_model) to analyze a series of measurements taken from videos of American Sign Language (ASL) collected for research (see the [RWTH-BOSTON-104 Database](http://www-i6.informatik.rwth-aachen.de/~dreuw/database-rwth-boston-104.php)).
 
-In each video, there's an ASL signer signing a meaningful sentence in ASL. You are given the XY coordinates of the speaker's left hand, right hand and nose for every frame. The following diagram shows how the positions of the left hand (Red), right hand (Blue), and nose (Green) change over time in video number #66. Saturation of colors represents time elapsed.
+In each video, an ASL signer is signing a meaningful sentence. In a typical ASL recognition system, you observe the XY coordinates of the speaker's left hand, right hand, and nose for every frame. The following diagram shows how the positions of the left hand (Red), right hand (Blue), and nose (Green) change over time in video number #66. Saturation of colors represents time elapsed.
 
 <img src="./demo/hands_nose_position.png" alt="hands nose position">
 
-In this assignment, for the sake of simplicity, you will only use the Y-coordinates to construct your HMM. In Part 1 you will build a one dimensional model, recognizing words based only on a series of right-hand Y coordinates; In Part 2 you will go multidimensional, and at each time step (frame) you will have two observed coordinates, representing right hand & left hand Y positions at that frame.
+In this assignment, for the sake of simplicity, you will only use the Y-coordinates of each hand to construct your HMM. In Part 1 you will build a one dimensional model, recognizing words based only on a series of right-hand Y coordinates; in Part 2 you will go multidimensional and utilize both hands. At this point, you will have two observed coordinates at each time step (frame) representing right hand & left hand Y positions.
+
+The words you will be recognizing are "BUY", "HOUSE", and "CAR". These individual signs can be seen in the sign phrases from our dataset:
+
+![](demo/buy_house_slow.gif) 
+
+<p style="text-align:center; font-weight:bold"> JOHN CAN BUY HOUSE </p> 
+
+![](demo/buy_car_slow.gif) 
+
+<p style="text-align:center;  font-weight:bold"> JOHN BUY CAR [FUTURE] </p> 
+
 
 ### Part 1a: Encoding the HMM
 _[15 Points]_
 
-Follow the method taught on Udacity **Lecture 8: 29. HMM Training** to determine following values for each word:
+Follow the method described in Udacity **Lecture 8: 29. HMM Training** to determine following values for each word:
 1. the transition probabilities of each state
 2. the mean & standard deviation of emission Gaussian distribution of each state
 
-Use the training samples from the table below. Provide the transition, prior, and emission probabilities parameters for all three words with **accuracy to 3 decimal digits**.
+Use the training samples from the table below. Provide the transition and prior probabilities as well as the emission parameters for all three words with **accuracy to 3 decimal digits**.
 
 Round the values to 3 decimal places thoughout entire assignment:
 - 0.1 stays 0.1 or 0.100
@@ -89,7 +104,7 @@ As shown in the diagram below, each one of the three words (BUY, CAR, and HOUSE)
 <img src="part_1_a_probs.png">
 
 ### _Training sequences need to have 3 hidden states no matter what!_
-If you follow the procedure on the Udacity lecture video, you might encounter a situation where a hidden state is **_squeezed_** out by an adjacent state. In that situation, always keep at least one observation for that hidden state.
+If you follow the HMM training procedure described in Udacity, you might encounter a situation where a hidden state is **_squeezed_** out by an adjacent state; that is, a state might have its only observation moved to another state. In that situation, always keep at least one observation for that hidden state.
 
 Example:
 Assume you've reached a stage where the following is true: 
@@ -105,7 +120,7 @@ and you are trying to adjust the location of state boundary between State 1 & 2.
 
 `45 | 45 34 30 30 25 36 52 | 62 69 74`
 
-Now you meet the '3 hidden states per sample' requirement. Please check Piazza post @2368 for detailed instruction.
+Now you meet the '3 hidden states per sample' requirement.
 
 
 #### Functions to complete:
@@ -116,7 +131,7 @@ Now you meet the '3 hidden states per sample' requirement. Please check Piazza p
 ### Part 1b: Creating the Viterbi Trellis
 _[40 Points]_
 
-The goal here will be to use the HMM derived from Part 1a (states, prior probabilities, transition probabilities, and parameters of emission distribution) to build a viterbi trellis.  When provided with an evidence vector (list of observed right-hand Y coordinates), the function will return the most likely sequence of states that generated the evidence and the probabilty of that sequence being correct.
+The goal here will be to use the HMM derived from Part 1a (states, prior probabilities, transition probabilities, and parameters of emission distribution) to build a Viterbi trellis.  When provided with an evidence vector (list of observed right-hand Y coordinates), the function will return the most likely sequence of states that generated the evidence and the probabilty of that sequence being correct.
 
 For example, an evidence vector [36, 44, 52, 53, 49, 44] should output a sequence ['B1', ... 'B2', ... 'B3']
 
@@ -131,9 +146,9 @@ If no sequence can be found, the algorithm should return one of the following tu
 #### Hint:
 In order to reconstruct your most-likely path after running Viterbi, you'll need to keep track of a back-pointer at each state, which directs you to that state's most-likely predecessor.
 
-You are asked to use the provided function `gaussian_prob` to compute  emission probabilities. Although in real work, you have to convert the probability to log-base in order to prevent digit underflow, in this assignemnt however, we will only test your function against a rather short sequence of observations, so **DO NOT** convert the probability to logarithmic probability, otherwise you might fail to pass the unittests on Bonnie.
+You are asked to use the provided function `gaussian_prob` to compute  emission probabilities. In a typical HMM model you have to convert the probability to log-base in order to prevent numerical underflow, but in this assignemnt we will only test your function against a rather short sequence of observations, so **DO NOT** convert the probability to logarithmic probability or you will fail on Gradescope.
 
-#### Bonnie Notes:
+#### Gradescope:
 In the autograder, we will also test your code against other `evidence_vectors`.
 
 ----
@@ -141,11 +156,11 @@ In the autograder, we will also test your code against other `evidence_vectors`.
 ### Part2a: Multidimensional Output Probabilities
 _[6 Points]_
 
-In Part 1a, we use only right-hand Y-axis coordinates as our solely feature, now we are going to use both hands. Since sign language is two handed, using features both to the right and left hands can increase the accuracy of our model when dealing with more complex sentences.
+In Part 1a, we use only right-hand Y-axis coordinates as our feature, and now we are going to use both hands. Since ASL is two handed, using observations from both the right and left hands as features can increase the accuracy of our model when dealing with more complex sentences.
 
-Here you are given with the transition probabilities, and the means & standard deviations for emission probabilties of left-hand Y-axis locations, following the same procedure conducted in Part 1a.
+Here you are given the transition probabilities and the emission parameters of left-hand Y-axis locations, following the same procedure conducted in Part 1a.
 
-One thing to notice is, in Part 1, the `viterbi` function is tested against single words. In other words, the input evidence vector will not transit between different words. However, for Part 2, the input evidence vector can be either a single word, or a verb phrase such as "BUY CAR" and "BUY HOUSE". Adjust the given probabilities to adapt this fact.
+One thing to notice is, in Part 1, the `viterbi` function is tested against single words. That is, the input evidence vector will not transit between different words. However, for Part 2, the input evidence vector can be either a single word, or a verb phrase such as "BUY CAR" and "BUY HOUSE". Adjust the given transition probabilities to adapt to this fact.
 
 <img src="part_2_a_probs.png" alt="2a_probs">
 
@@ -172,13 +187,13 @@ Std | 7.392 | 8.875 | 8.347
 ### Part 2b: Improving the Viterbi Trellis
 _[39 Points]_
 
-Modify the Viterbi Trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
+Modify the Viterbi trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
 
 
 #### Functions to complete:
 1. `multidimensional_viterbi()`
 
-#### Bonnie Notes:
+#### Gradescope:
 In the autograder, we will also test your code against other `evidence_vectors`.
 
 ---
@@ -187,73 +202,57 @@ In the autograder, we will also test your code against other `evidence_vectors`.
 **CONGRATULATIONS!**  You have just completed your final assignment for CS6601 Artificial Intelligence.
 
 
-#### Bonus
-Here is a piece of code that listens for a first left mouse click and starts producing a 1 or 0 every 100 milliseconds depending on whether or not the left mouse is depressed. When it senses a “return” key, the code finishes writing the binary sequence and you can close the window. The time of pressing and depressing is rounded to the nearest 100 milliseconds.
+### Bonus
 
-  
-    from Tkinter import *
-    import sys
-    import time
+Note: All graphics are from Dr. Ploetz's 2005 Disseration ["Advanced Stochastic Protein Sequence Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.667.139&rep=rep1&type=pdf)
 
-    message=''
-    key_start=-1
-    space_start=-1
+#### Description
 
-    def press(event):
-        global message,key_start,space_start
-        times=0
-        if space_start>0:
-            times=int(round((time.time()-space_start)*10))
-        key_start=time.time()
-        for i in range(times):
-            message+='0,'
-            msg.insert(END,'0,')
+You might have noticed that the HMMs that you've constructed in this assignment are created and trained using data from only one user in a static environment. While these can be useful in practice, it is often the case that we want our HMMS to adapt to many different users and many different environments. For example, if we're reading hand positions from a video frame, what if the capture device is tilted? Our left and right hand position data will be affected, and our HMM could output a low probability for what in reality could be a perfect sign. How do we approach this problem?
 
-     def depress(event):   
-        global message,key_start,space_start
-        times=0
-        if key_start>0:	
-            times=int(round((time.time()-key_start)*10))
-        space_start=time.time()
-        for i in range(times):
-            message+='1,'
-            msg.insert(END,'1,')
+One solution is to collect lots of data from whatever scenario we find ourselves in and train an entirely new HMM. This is infeasible in many real-world applications, and is extremely data inefficient as we discard all data collected beforehand. A more practical solution is to collect a small amount of data for our new scenario, and use this data to adapt our previously trained HMM for use in this unfamiliar environment. One prevalent technique to apply this idea is called MLLR, or Maximum Likelihood Linear Regression, and involves transforming Gaussian parameters in an HMM based on new adaptation data. It is feasible in real applications as it only requires a small amount of adaptation data, and is data efficient in that we keep the information gained from our original training data. In this bonus, you'll adapt your constructed models to a new user.
+
+In the context of sign language and many others, when we adapt our model we don't want to change the transition probabilities, only the gaussian emission parameters of each state. Think of it as the signs themselves are not changing; simply the context in which we observe our data is changing. If we plotted all of our emission gaussians for all states, we might see something like this:
+
+<img src="bonus_graphics/sign_mixture.PNG" alt="gaussian_plot">
+
+In the scenario above with the tilted capture device, we would expect the general form of our model to stay the same with a slight transformation to fit the misaligned angle. Given a small amount of data from this tilted perspective, we would want to construct a transformation such that we can produce a HMM for this specific scenario. This is depicted in the graphic below:
+
+<img src="bonus_graphics/adapted_signs.PNG" alt="gaussian_plot">
+
+##### In this bonus we'll focus on creating a transformation matrix to change the means of each gaussian, not the variance.
 
 
-    def end(event):
-        global message
-        print message
+#### Procedure
+
+Below are three new data sequences for a new user in an unknown environment. Note that the data points in each state are provided, and there is no need for moving data points between states.
+
+Word | Frames | Observed sequence (R, L) | State1 | State2 | State3
+--- | --- | --- | --- | --- | --- 
+BUY | 11 | (61,123), (61, 116), (59, 121), (65, 99), (73, 97), (75, 98), (79, 74), (79, 84), (79, 84), (74, 89), (68, 81) | (61,123), (61, 116), (59, 121) | (65, 99), (73, 97), (75, 98) | (79, 74), (79, 84), (79, 84), (74, 89), (68, 81) 
+CAR | 8 | (44, 73), (53, 70), (62, 78), (64, 62), (66, 58), (59, 51), (61, 76), (58, 90)| (44, 73), (53, 70), (62, 78)| (64, 62), (66, 58), (59, 51)| (61, 76), (58, 90)
+HOUSE | 16 | (59, 65), (59, 68), (60, 69), (57, 70), (56, 64), (49, 59), (51, 57), (51, 51), (53, 51), (59, 59), (72, 79), (81, 82), (82, 89), (84, 90), (86, 90), (90, 93)| (59, 65), (59, 68), (60, 69), (57, 70), (56, 64)| (49, 59), (51, 57), (51, 51), (53, 51), (59, 59)| (72, 79), (81, 82), (82, 89), (84, 90), (86, 90), (90, 93)
 
 
+The original proposal of this technique is described in [C.J. Leggetter's 1995 paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.2050&rep=rep1&type=pdf), and we'll outline the steps here. Our objective is to construct a transformation matrix $W$ that we can apply to our existing means to produce the new parameters for our transformed HMM:
 
-    root=Tk()
+<img src="bonus_graphics/adapted_means.PNG" alt="gaussian_plot">
 
-    msg=Text(root)
-    msg.pack()
-    msg.config(font=('times',20))
-    button=Button(root,text="press me")
-    button.pack()
-    button.bind('<Button-1>',press)
-    button.bind('<ButtonRelease-1>',depress)
-    root.bind('<Return>',end)
-    mainloop()
+We can find this matrix W by the following equations:
 
+<img src="bonus_graphics/equations.PNG" alt="gaussian_plot">
 
-The program provided will open a new window and the unit time is 100 milliseconds. The duration of pressing and lifting is rounded to the nearest 100 milliseconds. Use this program (and your skill as a Morse code keyer) to generate a few strings of 0s and 1s that represent words in Morse code. Please note the temporal variability of human input. For example, SOS’s morse code is ... --- ... , but the user’s input might be 11100110011100011111100111111100111111001101110011.
+#### Variable Explanation:
 
-Finish creating HMMs for the rest of the letters of the Morse alphabet. Show that your Viterbi decoder for Morse can successfully decode the examples you made above (or at least get close). You may have to tune the transition probabilities to get reliable results. Include your binary strings and your decodings of them. Below are two webpages that you might find useful: [Morse code generator in Python](http://code.activestate.com/recipes/578411-a-complete-morse-code-generator-in-python-with-sou/), [Markov chain in English letter](http://www.prooffreader.com/2014/09/how-often-does-given-letter-follow.html).
+$R$: There are many derivations and considerations that we're simplifying in this section, and one of them is Regression Classes, denoted by $R$ in the above equations. A Regression Class is used if you want your adaptation data to only apply to a subset of your HMM, or only a certain amount of states. For this bonus, we consider all our states to be in the same Regression Class, and thus $\delta$ will always be equal to one.
 
-Besides the decoder, you also need to submit a string (only alphabets and spaces) and its morse code equivalent as performed by a human (in 0s and 1s). It should be a sentence of normal length and should be a real English sentence (comprised of real English words).
+$\vec{x}_t$ : $\vec{x}$ is the adaptation data vector, and $\vec{x}_t$ represents the data collected in time-step $t$.
 
-Your code will be tested against our string and strings submitted by other students. The decoder that gets the best results wins the competition. We will have no noise in the system. Temporal variability means that dots can be different lengths "1" vs. "11" vs "111" and dashes can be different lengths "11111" vs. "1111111" vs. "1111111" but the system still decodes properly. For our test sentences, we will make sure that the dots and dashes have some variability in them but still maintain that a dot is approximately 1/3 the size of the dash.
+$s_t$: $s_t$ represents the state that the sequence is currently in at time-step $t$.
 
+$\mu_{ki}$: $\mu_k$ represents the means of a particular state $k$, and $i$ refers to each dimension in the mean.  
 
-    def decoder(evidence_vector):
-        #you can define your prior, emission, transition probabilities in your own format
-        #sequence: like "A BC"
-        return sequence
-        
-    def extra_credit():
-        #string: like "A BC"
-        #morse_code_equivalent: like [1,0,1]
-        return string, morse_code_equivalent
+#### Functions to complete:
+
+1. `MLLR_results()`
+
