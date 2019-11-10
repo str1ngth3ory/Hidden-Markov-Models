@@ -214,11 +214,11 @@ One solution is to collect lots of data from whatever scenario we find ourselves
 
 In the context of sign language and many others, when we adapt our model we don't want to change the transition probabilities, only the gaussian emission parameters of each state. Think of it as the signs themselves are not changing; simply the context in which we observe our data is changing. If we plotted all of our emission gaussians for all states, we might see something like this:
 
-<img src="./bonus_graphics/sign_mixture.PNG" alt="gaussian_plot">
+<img src="./bonus_graphics/sign_mixture.png" alt="gaussian_plot">
 
 In the scenario above with the tilted capture device, we would expect the general form of our model to stay the same with a slight transformation to fit the misaligned angle. Given a small amount of data from this tilted perspective, we would want to construct a transformation such that we can produce a HMM for this specific scenario. This is depicted in the graphic below:
 
-<img src="./bonus_graphics/adapted_signs.PNG" alt="gaussian_plot">
+<img src="./bonus_graphics/adapted_signs.png" alt="gaussian_plot">
 
 ##### In this bonus we'll focus on creating a transformation matrix to change the means of each gaussian, not the variance.
 
