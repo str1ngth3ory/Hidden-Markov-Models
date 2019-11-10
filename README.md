@@ -59,11 +59,11 @@ In this assignment, for the sake of simplicity, you will only use the Y-coordina
 
 The words you will be recognizing are "BUY", "HOUSE", and "CAR". These individual signs can be seen in the sign phrases from our dataset:
 
-<img src="./bonus_graphics/buy_house_slow.gif"> 
+<img src="./demo/buy_house_slow.gif"> 
 
 <p style="text-align:center; font-weight:bold"> JOHN CAN BUY HOUSE </p> 
 
-<img src="./bonus_graphics/buy_car_slow.gif"> 
+<img src="./demo/buy_car_slow.gif"> 
 
 <p style="text-align:center;  font-weight:bold"> JOHN BUY CAR [FUTURE] </p> 
 
