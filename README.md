@@ -214,11 +214,11 @@ One solution is to collect lots of data from whatever scenario we find ourselves
 
 In the context of sign language and many others, when we adapt our model we don't want to change the transition probabilities, only the gaussian emission parameters of each state. Think of it as the signs themselves are not changing; simply the context in which we observe our data is changing. If we plotted all of our emission gaussians for all states, we might see something like this:
 
-<img src="./bonus_graphics/sign_mixture.png" alt="gaussian_plot">
+<img src="./bonus_graphics/sign_mixture.PNG" alt="gaussian_plot">
 
 In the scenario above with the tilted capture device, we would expect the general form of our model to stay the same with a slight transformation to fit the misaligned angle. Given a small amount of data from this tilted perspective, we would want to construct a transformation such that we can produce a HMM for this specific scenario. This is depicted in the graphic below:
 
-<img src="./bonus_graphics/adapted_signs.png" alt="gaussian_plot">
+<img src="./bonus_graphics/adapted_signs.PNG" alt="gaussian_plot">
 
 ##### In this bonus we'll focus on creating a transformation matrix to change the means of each gaussian, not the variance.
 
@@ -236,11 +236,11 @@ HOUSE | 16 | (59, 65), (59, 68), (60, 69), (57, 70), (56, 64), (49, 59), (51, 57
 
 The original proposal of this technique is described in [C.J. Leggetter's 1995 paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.2050&rep=rep1&type=pdf), and we'll outline the steps here. Our objective is to construct a transformation matrix $W$ that we can apply to our existing means to produce the new parameters for our transformed HMM:
 
-<img src="./bonus_graphics/adapted_means.png" alt="gaussian_plot">
+<img src="./bonus_graphics/adapted_means.PNG" alt="gaussian_plot">
 
 We can find this matrix W by the following equations:
 
-<img src="./bonus_graphics/equations.png" alt="gaussian_plot">
+<img src="./bonus_graphics/equations.PNG" alt="gaussian_plot">
 
 #### Variable Explanation:
 
