@@ -204,6 +204,8 @@ In the autograder, we will also test your code against other `evidence_vectors`.
 
 ### Bonus
 
+_[5 Points]_
+
 Note: All graphics are from Dr. Ploetz's 2005 Disseration ["Advanced Stochastic Protein Sequence Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.667.139&rep=rep1&type=pdf)
 
 #### Description
