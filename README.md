@@ -21,23 +21,23 @@
 ## Overview
 Hidden Markov Models are used extensively in Artificial Intelligence, Pattern Recognition, Computer Vision, and many other fields.  If a system has unobservable (hidden) states and each state is independent of the prior, then we can create a model of that system using probability distributions over a sequence of observations.  The idea is that we can provide this system with a series of observations to use to query what is the most likely sequence of states that generated these observations.
 
-### Due Date
-This assignment is due on December 2nd, 2019 at 11:59PM UTC-12 (Anywhere on Earth). We suggest finishing this assignment quickly to have some breathing room before the final exam!
-
-The deliverables for the assignment are:
-
-* All functions completed in **submission.py**
-
 ### The Files
 
 You will only have to edit and submit **submission.py**, but here are all the notable files:
-1. **submission.py**: Where you will construct your probabilities and viterbi trellis.
-2. **hmm_submission_tests.py**:  Local test file.  Due to static nature of the trellis values, local tests are extremely limited.  Please do not share values or probabilities with other students if you create your own tests.
+1. **notebook.ipynb**: Optional Jupyter notebook to complete the assignment.
+2. **submission.py**: Where you will ultimately put your probabilities and viterbi trellis.
+3. **hmm_submission_tests.py**:  Local test file.  Due to static nature of the trellis values, local tests are extremely limited.  Please do not share values or probabilities with other students if you create your own tests.
 
 ## Submission
-All submissions will be via Gradescope. Execute `python submit.py` to send your submission file.  It is recommended to run this command from a shell/command prompt as issues have been known while running inside select IDEs.
+All submissions will be via Gradescope. If you're completing this assignment in Jupyter Notebook, you must run the `notebook2script.py` file to export your work to a python file. To generate your submission file, run the command 
 
-#### IMPORTANT: A total of 10 submissions is allowed for this assignment. This means you can submit a maximum of 5 times during the duration of the assignment. Please use your submissions carefully and do not submit until you have thoroughly tested your code locally.
+`python notebook2script.py submission`:
+
+and your file will be created under the `submission` directory.
+
+Upload the resulting `submission.py` file to the Assignment 6 assignment on Gradescope for feedback.
+
+#### IMPORTANT: A total of 10 submissions is allowed for this assignment. Please use your submissions carefully and do not submit until you have thoroughly tested your code locally.
 
 #### If you're at 9 submissions, use your tenth and last submission wisely. The submission marked as ‘Active’ in Gradescope will be the submission counted towards your grade. 
 
