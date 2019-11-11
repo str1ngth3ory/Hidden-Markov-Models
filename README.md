@@ -246,13 +246,13 @@ We can find this matrix W by the following equations:
 
 #### Variable Explanation:
 
-$R$: There are many derivations and considerations that we're simplifying in this section, and one of them is Regression Classes, denoted by $R$ in the above equations. A Regression Class is used if you want your adaptation data to only apply to a subset of your HMM, or only a certain amount of states. For this bonus, we consider all our states to be in the same Regression Class, and thus $\delta$ will always be equal to one.
+R: There are many derivations and considerations that we're simplifying in this section, and one of them is Regression Classes, denoted by R in the above equations. A Regression Class is used if you want your adaptation data to only apply to a subset of your HMM, or only a certain amount of states. For this bonus, we consider all our states to be in the same Regression Class, and thus delta will always be equal to one.
 
-$\vec{x}_t$ : $\vec{x}$ is the adaptation data vector, and $\vec{x}_t$ represents the data collected in time-step $t$.
+x : x is the adaptation data vector, and x_t represents the data collected in time-step t.
 
-$s_t$: $s_t$ represents the state that the sequence is currently in at time-step $t$.
+s_t: s_t represents the state that the sequence is currently in at time-step t.
 
-$\mu_{ki}$: $\mu_k$ represents the means of a particular state $k$, and $i$ refers to each dimension in the mean.  
+mu_ki: mu_k represents the means of a particular state k, and i refers to each dimension in the mean.  
 
 #### Functions to complete:
 
