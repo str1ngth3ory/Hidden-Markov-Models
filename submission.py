@@ -292,7 +292,7 @@ def multidimensional_viterbi(evidence_vector, states, prior_probs,
 
 
 def MLLR_results():
-     """Complete the MLLR adaptation process with the new adaptation data and 
+    """Complete the MLLR adaptation process with the new adaptation data and 
      return the new emission parameters for each state.
     """
     # TODO: complete this function.
