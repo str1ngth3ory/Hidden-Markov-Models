@@ -172,7 +172,7 @@ def viterbi(evidence_vector, states, prior_probs,
         transition_probs (dict): dictionary representing transitions from each
                                  state to every other state.
 
-        emission_paras (tuple): parameters of Gaussian distribution 
+        emission_paras (dict): parameters of Gaussian distribution 
                                 from each state.
 
     Return:
