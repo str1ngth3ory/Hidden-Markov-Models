@@ -661,7 +661,7 @@ class TestPart2b(unittest.TestCase):
                     57, 67, 74, 85, 84, 89, 93, 93, 94]
         evidence = list(zip(right_y, left_y))
 
-        prob_ans = 3.8056704978411683e-75
+        prob_ans = 3.838599461219723e-75
 
         states, prior, trans, emiss = self.setup(part_2_a)
 
