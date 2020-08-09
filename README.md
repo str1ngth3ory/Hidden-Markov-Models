@@ -1,3 +1,5 @@
+**The assignment is not yet released for the Fall 2020 and might be subject to change.**
+
 # Assignment 6: Hidden Markov Models
 
 ## Setup
