@@ -296,3 +296,37 @@ def return_your_name():
     """
     # TODO: finish this
     raise NotImplementedError()
+
+
+def MLLR_results():
+    
+    """Complete the MLLR adaptation process with the new adaptation data and 
+     return the new emission parameters for each state.
+    """
+    # TODO: complete this function.
+
+
+    b_emission_paras = {
+        'B1': [(None, None), (None, None)],
+        'B2': [(None, None), (None, None)],
+        'B3': [(None, None), (None, None)],
+        'Bend': [(None, None), (None, None)]
+    }
+
+    c_emission_paras = {
+        'C1': [(None, None), (None, None)],
+        'C2': [(None, None), (None, None)],
+        'C3': [(None, None), (None, None)],
+        'Cend': [(None, None), (None, None)]
+    }
+
+    h_emission_paras = {
+        'H1': [(None, None), (None, None)],
+        'H2': [(None, None), (None, None)],
+        'H3': [(None, None), (None, None)],
+        'Hend': [(None, None), (None, None)]
+    }
+
+    return (b_emission_paras, 
+            c_emission_paras, 
+            h_emission_paras)
