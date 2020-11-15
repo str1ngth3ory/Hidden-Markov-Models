@@ -43,7 +43,7 @@ Upload the resulting `submission.py` file to the Assignment 6 assignment on Grad
 
 
 ### Resources
-1. Udacity Lectures on [Pattern Recognition Through Time (Lesson 8)](https://classroom.udacity.com/courses/ud954/lessons/5829639927/concepts/66950604320923)
+1. Canvas Lectures on Pattern Recognition Through Time (Lesson 8)
 2. Challenge Questions on Piazza
 
 ## The Assignment
