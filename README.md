@@ -41,8 +41,6 @@ Upload the resulting `submission.py` file to the Assignment 6 assignment on Grad
 
 #### If you're at 9 submissions, use your tenth and last submission wisely. The submission marked as ‘Active’ in Gradescope will be the submission counted towards your grade. 
 
-Please also submit your submission.py to Canvas as backup.
-
 
 ### Resources
 1. Udacity Lectures on [Pattern Recognition Through Time (Lesson 8)](https://classroom.udacity.com/courses/ud954/lessons/5829639927/concepts/66950604320923)
