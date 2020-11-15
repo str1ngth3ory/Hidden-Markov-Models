@@ -69,7 +69,7 @@ The words you will be recognizing are "BUY", "HOUSE", and "CAR". These individua
 ### Part 1a: Encoding the HMM
 _[15 Points]_
 
-Follow the method described in Udacity **Lecture 8: 29. HMM Training** to determine following values for each word:
+Follow the method described in Canvas **Lecture 8: 29. HMM Training** to determine following values for each word:
 1. the transition probabilities of each state
 2. the mean & standard deviation of emission Gaussian distribution of each state
 
@@ -102,7 +102,7 @@ As shown in the diagram below, each one of the three words (BUY, CAR, and HOUSE)
 <img src="part_1_a_probs.png">
 
 ### _Training sequences need to have 3 hidden states no matter what!_
-If you follow the HMM training procedure described in Udacity, you might encounter a situation where a hidden state is **_squeezed_** out by an adjacent state; that is, a state might have its only observation moved to another state. In that situation, always keep at least one observation for that hidden state.
+If you follow the HMM training procedure described in Canvas, you might encounter a situation where a hidden state is **_squeezed_** out by an adjacent state; that is, a state might have its only observation moved to another state. In that situation, always keep at least one observation for that hidden state.
 
 Example:
 Assume you've reached a stage where the following is true: 
