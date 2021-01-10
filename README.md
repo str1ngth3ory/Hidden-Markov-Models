@@ -1,3 +1,5 @@
+**The assignment is not yet released for the Spring 2021 and might be subject to change.**
+
 # Assignment 6: Hidden Markov Models
 
 ## Setup
