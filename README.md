@@ -1,6 +1,4 @@
-**The assignment is not yet released for the Spring 2021 and might be subject to change.**
-
-# Assignment 6: Hidden Markov Models
+# Assignment 6A: Hidden Markov Models
 
 ## Setup
 1. Clone this repository:
@@ -37,7 +35,7 @@ All submissions will be via Gradescope. If you're completing this assignment in 
 
 and your file will be created under the `submission` directory.
 
-Upload the resulting `submission.py` file to the Assignment 6 assignment on Gradescope for feedback.
+Upload the resulting `submission.py` file to the Assignment 6A assignment on Gradescope for feedback.
 
 #### IMPORTANT: A total of 10 submissions is allowed for this assignment. Please use your submissions carefully and do not submit until you have thoroughly tested your code locally.
 
@@ -47,6 +45,13 @@ Upload the resulting `submission.py` file to the Assignment 6 assignment on Grad
 ### Resources
 1. Canvas Lectures on Pattern Recognition Through Time (Lesson 8)
 2. Challenge Questions on Piazza
+
+### Local Testing
+If you are using `submission.py` to complete the assignment instead of the Jupyter Notebook, you can run the tests using:
+
+`python hmm_submission_tests.py`
+
+This will run all unit tests for the assignment, comment out the ones that aren't related to your part (at the bottom of the file) if going step by step.
 
 ## The Assignment
 The goal of this assignment is to demonstrate the power of probabalistic models. You will build a word recognizer for American Sign Language (ASL) video sequences. In particular, this project employs [hidden Markov models (HMM's)](https://en.wikipedia.org/wiki/Hidden_Markov_model) to analyze a series of measurements taken from videos of American Sign Language (ASL) collected for research (see the [RWTH-BOSTON-104 Database](http://www-i6.informatik.rwth-aachen.de/~dreuw/database-rwth-boston-104.php)).
@@ -170,6 +175,8 @@ Here you are given the transition probabilities and the emission parameters of l
 
 One thing to notice is, in Part 1, the `viterbi` function is tested against single words. That is, the input evidence vector will not transit between different words. However, for Part 2, the input evidence vector can be either a single word, or a verb phrase such as "BUY CAR" and "BUY HOUSE". Adjust the given transition probabilities to adapt to this fact.
 
+*NOTE: Add NEW keys to the transition dictionary ONLY if there is a NON-ZERO transition probability*
+
 <img src="part_2_a_probs.png" alt="2a_probs">
 
 BUY | State 1 | State 2 | State 3
@@ -195,7 +202,7 @@ Std | 7.392 | 8.875 | 8.347
 ### Part 2b: Improving the Viterbi Trellis
 _[39 Points]_
 
-Modify the Viterbi trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
+Modify the Viterbi trellis function to allow multiple observed values (Y location of right and left hands) for a state. The return format should be identical to Part 1b.
 
 
 #### Functions to complete:
