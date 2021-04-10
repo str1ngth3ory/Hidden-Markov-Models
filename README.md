@@ -122,13 +122,13 @@ and you are trying to adjust the location of state boundary between State 1 & 2.
 
 Now you meet the '3 hidden states per sample' requirement.
 
-## Some hints/guidelines for training
-# How should we compare if an observation if closer to one state or another?
+### Some hints/guidelines for training
+#### How should we compare if an observation if closer to one state or another?
 Check how many standard deviations away is the observation from the mean for each state. 
 Example: Say 46 is the rightmost observation in S1. If we denote the mean and std of state i as μi,σi, then should we be comparing 
 |46−μ1| / σ1 vs |46−μ2| / σ2
 
-# For HMM training, which side of the boundary should we check first while assigning observed sequence values to states?
+#### For HMM training, which side of the boundary should we check first while assigning observed sequence values to states?
 After computing the mean and std for each state, adjust the boundary between the states. Always start from the 1st element at the LEFT side of the boundary. If the LEFT element is closer to the next state, then move the boundary leftward. If the LEFT element should stay at the current state, then check the RIGHT element. This is just done to make sure that everyone gets the same results in the context of the assignment.
 
 #### Functions to complete:
