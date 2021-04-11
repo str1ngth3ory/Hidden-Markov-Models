@@ -1,8 +1,10 @@
 import unittest
 import platform
 import hashlib
-# from hmm_submission import part_1_a, part_2_a
-# from hmm_submission import viterbi, multidimensional_viterbi
+
+if __name__ == "__main__":
+    from submission import part_1_a, part_2_a
+    from submission import viterbi, multidimensional_viterbi
 
 
 if platform.system() == 'Windows':
@@ -673,7 +675,7 @@ class TestPart2b(unittest.TestCase):
                                             prior,
                                             trans,
                                             emiss)
-        self.assertAlmostEqual(prob_ans, prob, places=77)
+        self.assertAlmostEqual(prob_ans, prob, places=76)
         self.assertEqual(seq_ans, seq)
 
         print_success_message("test_viterbi_phrase1")
@@ -705,5 +707,36 @@ class TestPart2b(unittest.TestCase):
         self.assertEqual(seq_ans, seq)
 
         print_success_message("test_viterbi_phrase2")
-# if __name__ == "__main__":
-#     unittest.main(verbosity=2)
+
+if __name__ == "__main__":
+    # unittest.main(verbosity=2)
+    TestPart1a().test_prior(part_1_a)
+    TestPart1a().test_b_emission(part_1_a)
+    TestPart1a().test_c_emission(part_1_a)
+    TestPart1a().test_h_emission(part_1_a)
+    TestPart1a().test_b_transition(part_1_a)
+    TestPart1a().test_c_transition(part_1_a)
+    TestPart1a().test_h_transition(part_1_a)
+    TestPart1b().test_viterbi_case1(part_1_a, viterbi)
+    TestPart1b().test_viterbi_case2(part_1_a, viterbi)
+    TestPart1b().test_viterbi_case3(part_1_a, viterbi)
+    TestPart1b().test_viterbi_realsample1(part_1_a, viterbi)
+    TestPart1b().test_viterbi_realsample2(part_1_a, viterbi)
+    TestPart1b().test_viterbi_realsample3(part_1_a, viterbi)
+
+    TestPart2a().test_prior(part_2_a)
+    TestPart2a().test_b_emission(part_2_a)
+    TestPart2a().test_c_emission(part_2_a)
+    TestPart2a().test_h_emission(part_2_a)
+    TestPart2a().test_b_transition(part_2_a)
+    TestPart2a().test_c_transition(part_2_a)
+    TestPart2a().test_h_transition(part_2_a)
+
+    TestPart2b().test_viterbi_case1(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_case2(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_case3(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_realsample1(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_realsample2(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_realsample3(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_phrase1(part_2_a, multidimensional_viterbi)
+    TestPart2b().test_viterbi_phrase2(part_2_a, multidimensional_viterbi)

@@ -1,6 +1,4 @@
-**The assignment is not yet released for the Spring 2021 and might be subject to change.**
-
-# Assignment 6: Hidden Markov Models
+# Assignment 6A: Hidden Markov Models
 
 ## Setup
 1. Clone this repository:
@@ -37,7 +35,7 @@ All submissions will be via Gradescope. If you're completing this assignment in 
 
 and your file will be created under the `submission` directory.
 
-Upload the resulting `submission.py` file to the Assignment 6 assignment on Gradescope for feedback.
+Upload the resulting `submission.py` file to the Assignment 6A assignment on Gradescope for feedback.
 
 #### IMPORTANT: A total of 10 submissions is allowed for this assignment. Please use your submissions carefully and do not submit until you have thoroughly tested your code locally.
 
@@ -47,6 +45,13 @@ Upload the resulting `submission.py` file to the Assignment 6 assignment on Grad
 ### Resources
 1. Canvas Lectures on Pattern Recognition Through Time (Lesson 8)
 2. Challenge Questions on Piazza
+
+### Local Testing
+If you are using `submission.py` to complete the assignment instead of the Jupyter Notebook, you can run the tests using:
+
+`python hmm_submission_tests.py`
+
+This will run all unit tests for the assignment, comment out the ones that aren't related to your part (at the bottom of the file) if going step by step.
 
 ## The Assignment
 The goal of this assignment is to demonstrate the power of probabalistic models. You will build a word recognizer for American Sign Language (ASL) video sequences. In particular, this project employs [hidden Markov models (HMM's)](https://en.wikipedia.org/wiki/Hidden_Markov_model) to analyze a series of measurements taken from videos of American Sign Language (ASL) collected for research (see the [RWTH-BOSTON-104 Database](http://www-i6.informatik.rwth-aachen.de/~dreuw/database-rwth-boston-104.php)).
@@ -122,6 +127,14 @@ and you are trying to adjust the location of state boundary between State 1 & 2.
 
 Now you meet the '3 hidden states per sample' requirement.
 
+### Some hints/guidelines for training
+#### How should we compare if an observation if closer to one state or another?
+Check how many standard deviations away is the observation from the mean for each state. 
+Example: Say 46 is the rightmost observation in S1. If we denote the mean and std of state i as μi,σi, then should we be comparing 
+|46−μ1| / σ1 vs |46−μ2| / σ2
+
+#### For HMM training, which side of the boundary should we check first while assigning observed sequence values to states?
+After computing the mean and std for each state, adjust the boundary between the states. Always start from the 1st element at the LEFT side of the boundary. If the LEFT element is closer to the next state, then move the boundary leftward. If the LEFT element should stay at the current state, then check the RIGHT element. This is just done to make sure that everyone gets the same results in the context of the assignment.
 
 #### Functions to complete:
 1. `part_1_a()`
@@ -162,6 +175,8 @@ Here you are given the transition probabilities and the emission parameters of l
 
 One thing to notice is, in Part 1, the `viterbi` function is tested against single words. That is, the input evidence vector will not transit between different words. However, for Part 2, the input evidence vector can be either a single word, or a verb phrase such as "BUY CAR" and "BUY HOUSE". Adjust the given transition probabilities to adapt to this fact.
 
+*NOTE: Add NEW keys to the transition dictionary ONLY if there is a NON-ZERO transition probability*
+
 <img src="part_2_a_probs.png" alt="2a_probs">
 
 BUY | State 1 | State 2 | State 3
@@ -187,7 +202,7 @@ Std | 7.392 | 8.875 | 8.347
 ### Part 2b: Improving the Viterbi Trellis
 _[39 Points]_
 
-Modify the Viterbi trellis function to allow multiple observed values (Y location of right and left hands) for a state. You don't have to use `gaussian_prob` this time, but the return format should be identical to Part 1b.
+Modify the Viterbi trellis function to allow multiple observed values (Y location of right and left hands) for a state. The return format should be identical to Part 1b.
 
 
 #### Functions to complete:
@@ -197,64 +212,6 @@ Modify the Viterbi trellis function to allow multiple observed values (Y locatio
 In the autograder, we will also test your code against other `evidence_vectors`.
 
 ---
-
-### Bonus
-
-_[5 Points]_
-
-Note: All graphics are from Dr. Ploetz's 2005 Disseration ["Advanced Stochastic Protein Sequence Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.667.139&rep=rep1&type=pdf)
-
-#### Description
-
-You might have noticed that the HMMs that you've constructed in this assignment are created and trained using data from only one user in a static environment. While these can be useful in practice, it is often the case that we want our HMMS to adapt to many different users and many different environments. For example, if we're reading hand positions from a video frame, what if the capture device is tilted? Our left and right hand position data will be affected, and our HMM could output a low probability for what in reality could be a perfect sign. How do we approach this problem?
-
-One solution is to collect lots of data from whatever scenario we find ourselves in and train an entirely new HMM. This is infeasible in many real-world applications, and is extremely data inefficient as we discard all data collected beforehand. A more practical solution is to collect a small amount of data for our new scenario, and use this data to adapt our previously trained HMM for use in this unfamiliar environment. One prevalent technique to apply this idea is called MLLR, or Maximum Likelihood Linear Regression, and involves transforming Gaussian parameters in an HMM based on new adaptation data. It is feasible in real applications as it only requires a small amount of adaptation data, and is data efficient in that we keep the information gained from our original training data. In this bonus, you'll adapt your constructed models to a new user.
-
-In the context of sign language and many others, when we adapt our model we don't want to change the transition probabilities, only the gaussian emission parameters of each state. Think of it as the signs themselves are not changing; simply the context in which we observe our data is changing. If we plotted all of our emission gaussians for all states, we might see something like this:
-
-<img src="./bonus_graphics/sign_mixture.png" alt="gaussian_plot">
-
-In the scenario above with the tilted capture device, we would expect the general form of our model to stay the same with a slight transformation to fit the misaligned angle. Given a small amount of data from this tilted perspective, we would want to construct a transformation such that we can produce a HMM for this specific scenario. This is depicted in the graphic below:
-
-<img src="./bonus_graphics/adapted_signs.png" alt="gaussian_plot">
-
-##### In this bonus we'll focus on creating a transformation matrix to change the means of each gaussian, not the variance.
-
-
-#### Procedure
-
-Below are three new data sequences for a new user in an unknown environment. Note that the data points in each state are provided, and there is no need for moving data points between states.
-
-Word | Frames | Observed sequence (R, L) | State1 | State2 | State3
---- | --- | --- | --- | --- | --- 
-BUY | 11 | (61,123), (61, 116), (59, 121), (65, 99), (73, 97), (75, 98), (79, 74), (79, 84), (79, 84), (74, 89), (68, 81) | (61,123), (61, 116), (59, 121) | (65, 99), (73, 97), (75, 98) | (79, 74), (79, 84), (79, 84), (74, 89), (68, 81) 
-CAR | 8 | (44, 73), (53, 70), (62, 78), (64, 62), (66, 58), (59, 51), (61, 76), (58, 90)| (44, 73), (53, 70), (62, 78)| (64, 62), (66, 58), (59, 51)| (61, 76), (58, 90)
-HOUSE | 16 | (59, 65), (59, 68), (60, 69), (57, 70), (56, 64), (49, 59), (51, 57), (51, 51), (53, 51), (59, 59), (72, 79), (81, 82), (82, 89), (84, 90), (86, 90), (90, 93)| (59, 65), (59, 68), (60, 69), (57, 70), (56, 64)| (49, 59), (51, 57), (51, 51), (53, 51), (59, 59)| (72, 79), (81, 82), (82, 89), (84, 90), (86, 90), (90, 93)
-
-
-The original proposal of this technique is described in [C.J. Leggetter's 1995 paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.2050&rep=rep1&type=pdf), and we'll outline the steps here. Our objective is to construct a transformation matrix $W$ that we can apply to our existing means to produce the new parameters for our transformed HMM:
-
-<img src="./bonus_graphics/adapted_means.PNG" alt="gaussian_plot">
-
-We can find this matrix W by the following equations:
-
-<img src="./bonus_graphics/equations.PNG" alt="gaussian_plot">
-
-#### Variable Explanation:
-
-R: There are many derivations and considerations that we're simplifying in this section, and one of them is Regression Classes, denoted by R in the above equations. A Regression Class is used if you want your adaptation data to only apply to a subset of your HMM, or only a certain amount of states. For this bonus, we consider all our states to be in the same Regression Class, and thus delta will always be equal to one.
-
-x : x is the adaptation data vector, and x_t represents the data collected in time-step t.
-
-s_t: s_t represents the state that the sequence is currently in at time-step t.
-
-mu_ki: mu_k represents the means of a particular state k, and i refers to each dimension in the mean.  
-
-#### Functions to complete:
-
-1. `MLLR_results()`
-
-
 
 **CONGRATULATIONS!**  You have just completed your final assignment for CS6601 Artificial Intelligence.
 
