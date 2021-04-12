@@ -709,7 +709,6 @@ class TestPart2b(unittest.TestCase):
         print_success_message("test_viterbi_phrase2")
 
 if __name__ == "__main__":
-    # unittest.main(verbosity=2)
     TestPart1a().test_prior(part_1_a)
     TestPart1a().test_b_emission(part_1_a)
     TestPart1a().test_c_emission(part_1_a)
