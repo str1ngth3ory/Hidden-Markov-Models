@@ -1,4 +1,4 @@
-# Assignment 6A: Hidden Markov Models
+# Assignment 6: Hidden Markov Models
 
 ## Setup
 1. Clone this repository:
