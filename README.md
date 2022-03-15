@@ -45,6 +45,9 @@ Upload the resulting `submission.py` file to the Assignment 6A assignment on Gra
 ### Resources
 1. Canvas Lectures on Pattern Recognition Through Time (Lesson 8)
 2. Challenge Questions on Piazza
+3. We have provided a copy of the Wikipedia page that has been edited for the benefit of this assignment
+
+#### **WARNING:** Please do not view the official Wikipedia page for the Viterbi Algorithm. Doing so will count as violating the honor code. 
 
 ### Local Testing
 If you are using `submission.py` to complete the assignment instead of the Jupyter Notebook, you can run the tests using:
